@@ -1,0 +1,14 @@
+- title: "Home"
+  url: "/"
+- title: "Guides"
+  subcategories:
+    - title: "Soon..."
+      url: "#"
+- title: "Threats"
+  subcategories:
+    - title: "Threat Intel Roundup"
+      url: "/threats-update/"
+- title: "About"
+  subcategories:
+    - title: "What is ThreatRadar?"
+      url: "/about"

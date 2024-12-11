@@ -1,0 +1,45 @@
+shared:
+  environment:
+    DOCKER_REPO: screwdrivercd/guide
+jobs:
+  main:
+    image: ruby:2
+    requires: [~pr, ~commit]
+    steps:
+        - bundle_install: bundle install
+        - build: bundle exec jekyll build --source docs --destination _site
+        - proof: bundle exec htmlproofer --assume-extension --allow-hash-href --url-ignore '/bitbucket/,/gitlab/,/api\.screwdriver\.cd/,/github\.com/,/kubernetes\.io/,/opensource\.org/,/twitter\.com/,/linux\.die\.net/' --http-status-ignore 429 _site
+
+  publish:
+      image: ruby:2
+      requires: [main]
+      environment:
+          RELEASE_FILE: guide.tgz
+      secrets:
+          - GIT_KEY
+          - GITHUB_TOKEN
+      steps:
+          - setup-ci: git clone https://github.com/screwdriver-cd/toolbox.git ci
+          - install: bundle install
+          - build: bundle exec jekyll build --source docs --destination _site
+          - package: tar -C _site -cvzf $RELEASE_FILE .
+          - tag: ./ci/git-tag.sh
+          - publish: ./ci/git-release.sh
+  docker-publish:
+    requires: publish
+    template: sd/dind@latest
+  deploy:
+      image: ruby:2
+      requires: [docker-publish]
+      environment:
+          K8S_CONTAINER: guide
+          K8S_IMAGE: screwdrivercd/guide
+          K8S_HOST: kubernetes.default.svc
+          K8S_DEPLOYMENT: sdguide
+      secrets:
+          - K8S_TOKEN
+      steps:
+          - setup-ci: git clone https://github.com/screwdriver-cd/toolbox.git ci
+          - get-tag: ./ci/git-latest.sh
+          - wait-docker: DOCKER_TAG=`cat VERSION` ./ci/docker-wait.sh
+          - deploy-k8s: K8S_TAG=`cat VERSION` ./ci/k8s-deploy.sh
