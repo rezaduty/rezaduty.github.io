@@ -102,7 +102,7 @@ samp {
 }
 
 footer {
-    /*height: 21px;
+    height: 21px;
     padding: 5px 0;
     background-color: #d8dade;
     color: #878c91;
@@ -112,7 +112,7 @@ footer {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;*/
+    bottom: 0;
 }
 footer p {
     height: 11px;
@@ -137,7 +137,7 @@ footer .container > div:last-child {
  * Top Navigation
  */
 .navbar {
-    background: #211d1d;
+    background: #05121C;
     position: -webkit-sticky;
     position: sticky;
     top: 0;

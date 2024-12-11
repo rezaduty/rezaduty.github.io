@@ -30,7 +30,7 @@ id: 3
 
 index.add({
 title: "Home",
-content: "\n    \n    Welcome to ThreatRadar!\n    Threat Spot. Detect.\n\n\n\n    \n        User Guide\n        If you'd like to learn threat intelligence, please visit our Guides(Soon).\n    \n    \n        Threats Update\n        To find more information about Threat Updates,\n        visit the Threats Update section.\n    \n    \n        APT Wiki\n        To learn more about APT and TTPs, visit the APT Wiki section.\n    \n\n\n",
+content: "\n    \n    Welcome to ThreatRadar!\n    Threat Spot. Detect.\n\n\n\n    \n        User Guide\n        If you'd like to use Screwdriver to run a build, visit our User Guide.\n    \n    \n        Cluster Management\n        To find more information about managing your own Screwdriver cluster,\n        visit the Cluster Management section.\n    \n    \n        About\n        To learn more about Screwdriver in general, visit the About section.\n    \n\n\n\n    \n        If you are new to Screwdriver, we suggest you start by reading through the Domain model and YAML configuration to get an idea of different concepts in Screwdriver and how they tie together.\n\n        To see some working examples, you can try out our quickstart examples with different languages to choose from.\n    \n\n",
 id: 4
 });
 
@@ -64,7 +64,7 @@ var store = [{
 },{
   "title": "Home",
   "url": "/",
-  "summary": "Welcome to ThreatRadar! Threat Spot. Detect. User Guide If you'd like to learn threat intelligence, please visit our Guides(Soon). Threats...",
+  "summary": "Welcome to ThreatRadar! Threat Spot. Detect. User Guide If you'd like to use Screwdriver to run a build, visit our...",
   "menu": "menu"
 },{
   "title": null,
